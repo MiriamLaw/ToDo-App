@@ -30,29 +30,34 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null
+          console.log("Missing credentials");
+          return null;
         }
 
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
           }
-        })
+        });
 
         if (!user || !user.password) {
-          return null
+          console.log("User not found or no password set");
+          return null;
         }
 
         const passwordMatch = await bcrypt.compare(
           credentials.password,
           user.password
-        )
+        );
+
+        console.log("Password match result:", passwordMatch);
 
         if (!passwordMatch) {
-          return null
+          console.log("Password does not match");
+          return null;
         }
 
-        return user
+        return user;
       }
     }),
     // Comment out OAuth providers temporarily

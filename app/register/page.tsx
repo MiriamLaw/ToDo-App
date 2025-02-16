@@ -48,7 +48,7 @@ export default function Register() {
         <h1 className="text-6xl font-bold mb-6">Register</h1>
         
         {/* Email/Password Registration Form */}
-        <form onSubmit={handleEmailRegister} className="w-full max-w-md">
+        <form onSubmit={handleEmailRegister} className="w-full max-w-md" autoComplete="off">
           <div className="flex flex-col space-y-4">
             <input
               type="email"
@@ -57,6 +57,8 @@ export default function Register() {
               placeholder="Email"
               className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
+              autoComplete="new-email"
+              autoFocus
             />
             <input
               type="password"
@@ -65,6 +67,7 @@ export default function Register() {
               placeholder="Password"
               className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
+              autoComplete="new-password"
             />
             <button
               type="submit"
