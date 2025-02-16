@@ -10,10 +10,6 @@ export default function Register() {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
-  const handleOAuthRegister = (provider: string) => {
-    signIn(provider, { callbackUrl: "/dashboard" })
-  }
-
   const handleEmailRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
@@ -52,14 +48,14 @@ export default function Register() {
         <h1 className="text-6xl font-bold mb-6">Register</h1>
         
         {/* Email/Password Registration Form */}
-        <form onSubmit={handleEmailRegister} className="w-full max-w-md mb-8">
+        <form onSubmit={handleEmailRegister} className="w-full max-w-md">
           <div className="flex flex-col space-y-4">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
-              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
             />
             <input
@@ -67,7 +63,7 @@ export default function Register() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
             />
             <button
@@ -79,40 +75,6 @@ export default function Register() {
             {error && <p className="text-red-500">{error}</p>}
           </div>
         </form>
-
-        <div className="flex items-center w-full max-w-md mb-8">
-          <div className="flex-1 border-t border-gray-300"></div>
-          <div className="px-4 text-gray-500">or</div>
-          <div className="flex-1 border-t border-gray-300"></div>
-        </div>
-
-        {/* OAuth Buttons */}
-        <div className="flex flex-col space-y-4">
-          <button
-            onClick={() => handleOAuthRegister("google")}
-            className="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
-          >
-            <img
-              className="w-6 h-6"
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              loading="lazy"
-              alt="google logo"
-            />
-            <span>Continue with Google</span>
-          </button>
-          <button
-            onClick={() => handleOAuthRegister("github")}
-            className="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
-          >
-            <img
-              className="w-6 h-6"
-              src="https://www.svgrepo.com/show/512317/github-142.svg"
-              loading="lazy"
-              alt="github logo"
-            />
-            <span>Continue with GitHub</span>
-          </button>
-        </div>
       </main>
     </div>
   )
