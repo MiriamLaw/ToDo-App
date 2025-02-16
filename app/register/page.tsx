@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import Link from "next/link"
 
 export default function Register() {
   const router = useRouter()
@@ -48,7 +49,7 @@ export default function Register() {
         <h1 className="text-6xl font-bold mb-6">Register</h1>
         
         {/* Email/Password Registration Form */}
-        <form onSubmit={handleEmailRegister} className="w-full max-w-md" autoComplete="off">
+        <form onSubmit={handleEmailRegister} className="w-full max-w-md">
           <div className="flex flex-col space-y-4">
             <input
               type="email"
@@ -57,9 +58,13 @@ export default function Register() {
               placeholder="Email"
               className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
-              autoComplete="new-email"
+              autoComplete="username"
               autoFocus
+              list="email-suggestions"
             />
+            <datalist id="email-suggestions">
+              {/* Browser will automatically populate suggestions here */}
+            </datalist>
             <input
               type="password"
               value={password}
@@ -67,7 +72,7 @@ export default function Register() {
               placeholder="Password"
               className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
-              autoComplete="new-password"
+              autoComplete="off"
             />
             <button
               type="submit"
@@ -78,6 +83,16 @@ export default function Register() {
             {error && <p className="text-red-500">{error}</p>}
           </div>
         </form>
+
+        <p className="mt-4">
+          Already have an account?{" "}
+          <Link 
+            href="/login" 
+            className="text-blue-500 hover:text-blue-600"
+          >
+            Login
+          </Link>
+        </p>
       </main>
     </div>
   )

@@ -38,7 +38,7 @@ export default function Login() {
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold mb-6">Login</h1>
 
-        <form onSubmit={handleSubmit} className="w-full max-w-md" autoComplete="off">
+        <form onSubmit={handleSubmit} className="w-full max-w-md">
           <div className="flex flex-col space-y-4">
             <input
               type="email"
@@ -47,9 +47,13 @@ export default function Login() {
               placeholder="Email"
               className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
-              autoComplete="new-email"
+              autoComplete="username"
               autoFocus
+              list="email-suggestions"
             />
+            <datalist id="email-suggestions">
+              {/* Browser will automatically populate suggestions here */}
+            </datalist>
             <input
               type="password"
               value={password}
@@ -57,7 +61,7 @@ export default function Login() {
               placeholder="Password"
               className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               required
-              autoComplete="new-password"
+              autoComplete="off"
             />
             <button
               type="submit"
